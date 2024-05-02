@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:padding="2dp">
+
+    <RelativeLayout
+        android:id="@+id/icon_container"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+
+        <ImageView
+            android:id="@+id/ic_thumb"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:padding="5dp"
+            tools:ignore="ContentDescription" />
+
+        <ImageView
+            android:id="@+id/ic_logo"
+            android:layout_width="18dp"
+            android:layout_height="18dp"
+            android:layout_alignBottom="@id/ic_thumb"
+            android:layout_alignEnd="@id/ic_thumb"
+            android:layout_alignRight="@id/ic_thumb"
+            android:src="@android:drawable/ic_popup_reminder"
+            tools:ignore="ContentDescription"
+            app:tint="@android:color/black" />
+
+    </RelativeLayout>
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="false"
+        android:layout_marginTop="3dp"
+        android:layout_toEndOf="@+id/icon_container"
+        android:layout_toRightOf="@+id/icon_container"
+        android:layout_marginStart="@dimen/_8sdp"
+        android:gravity="center_vertical"
+        android:orientation="vertical"
+
+        tools:ignore="RtlSymmetry">
+
+        <TextView
+            android:textStyle="bold"
+            android:id="@+id/title1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Notification Sample App"
+            android:textColor="@android:color/black"
+            android:textSize="@dimen/_11sdp"
+            tools:ignore="HardcodedText" />
+
+        <TextView
+            android:id="@+id/title2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Expand me to see a detailed message!"
+            android:textColor="#CC000000"
+            android:textSize="@dimen/_9sdp"
+            tools:ignore="HardcodedText,SmallSp" />
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/timestamp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentTop="true"
+        android:paddingEnd="3dp"
+        android:paddingRight="3dp"
+        android:paddingTop="8dp"
+        android:textColor="@android:color/black"
+        android:textSize="@dimen/_7sdp"
+        tools:ignore="RelativeOverlap,RtlSymmetry,SmallSp" />
+
+</RelativeLayout>
