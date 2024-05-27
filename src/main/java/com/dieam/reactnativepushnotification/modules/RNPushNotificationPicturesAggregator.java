@@ -16,6 +16,7 @@ import com.facebook.imagepipeline.request.ImageRequestBuilder;
 import android.graphics.BitmapShader;
 import android.graphics.Canvas;
 import android.graphics.Paint;
+import android.graphics.Path;
 import android.graphics.RectF;
 import android.graphics.drawable.Drawable;
 import android.util.Log;
@@ -86,7 +87,7 @@ public class RNPushNotificationPicturesAggregator {
     this.finished();
   }
   public void setThumb(Bitmap bitmap) {
-    this.thumb = getRoundedBitmap(bitmap, commonRadius);
+    this.thumb = getCircularBitmap(bitmap);
     this.finished();
   }
   public void setLinkBitmap(Bitmap bitmap) {
@@ -160,7 +161,32 @@ public class RNPushNotificationPicturesAggregator {
       }
     });
   }
+  public static Bitmap getCircularBitmap(Bitmap bitmap) {
+    int width = bitmap.getWidth();
+    int height = bitmap.getHeight();
+    int diameter = Math.min(width, height);
+    int radius = diameter / 2;
 
+    Bitmap output = Bitmap.createBitmap(diameter, diameter, Bitmap.Config.ARGB_8888);
+    Canvas canvas = new Canvas(output);
+
+    final Paint paint = new Paint();
+    final RectF rectF = new RectF(0, 0, diameter, diameter);
+    final Path path = new Path();
+
+    path.addCircle((float) diameter / 2, (float) diameter / 2, (float) diameter / 2, Path.Direction.CCW);
+
+    paint.setAntiAlias(true);
+    paint.setColor(0xFF000000);
+
+    canvas.drawARGB(0, 0, 0, 0);
+    canvas.drawPath(path, paint);
+
+    paint.setXfermode(new android.graphics.PorterDuffXfermode(android.graphics.PorterDuff.Mode.SRC_IN));
+    canvas.drawBitmap(bitmap, null, rectF, paint);
+
+    return output;
+  }
 
   public static Bitmap getRoundedBitmap(Bitmap bitmap, int cornerRadius) {
     if(bitmap == null){
